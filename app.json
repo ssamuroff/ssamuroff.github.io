@@ -1,0 +1,31 @@
+{
+  "name": "DESC Registration Server",
+  "description": "A registration server for LSST DESC collaboration meetings",
+  "keywords": [
+    "flask",
+    "python"
+  ],
+  "repository": "https://github.com/LSSTDESC/meeting-registration-form",
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    }
+   ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "The secret registration key.",
+      "generator": "secret"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "python registration_server.py --create"
+  }
+}

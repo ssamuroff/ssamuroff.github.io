@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>DES registration form</title>
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Raleway:400,400i,700'>
+  <style>
+
+body {
+  margin-bottom: 0px; /* Margin bottom by footer height */
+}
+.footer {
+  margin-top: 40px;
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
+#badge span {
+  font-family: "Raleway";
+}
+
+#badge {
+  position: relative;
+  margin: 0 auto;
+  width: 4in;
+  height: 3in;
+  border: 1px solid black;
+}
+
+#badge div {
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  line-height: 0.8;
+}
+#lname-d,
+#sname-d {
+  font-weight: bold;
+}
+#lname-d {
+  font-size: 68pt;
+  bottom: 2.05in;
+}
+#sname-d {
+  font-size: 26pt;
+  font-weight: bold;
+  bottom: 1.55in;
+}
+#affili-d,
+#pronoun-d {
+  font-size: 22pt;
+  bottom: 1.08in;
+}
+#pronoun-d {
+  font-style: italic;
+  bottom: 0.64in;
+}
+#event-d,
+#location-d {
+  font-size: 7pt;
+  bottom: 0.29in;
+  left: 0.025in;
+}
+#location-d {
+  bottom: 0.15in;
+}
+
+#logo1 {
+  width: 92px !important;
+  height: 61px;
+  background-image: url("https://raw.githubusercontent.com/LSSTDESC/name-tag-guru/master/web-static/desc-logo.png");
+  bottom: 0.02in;
+  left: 0.1in;
+}
+
+#logo2 {
+  width: 64px !important;
+  height: 22px;
+  background-image: url("https://raw.githubusercontent.com/LSSTDESC/name-tag-guru/master/web-static/lsstc-logo.png");
+  bottom: 0.15in;
+  right: 0.2in;
+}
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+  <h2>Registration for the DES Y3KP Workshop at CMU, July 2018</h2>
+  The registration for this workshop is free! Please enter your details below.
+  <br>
+  <br>
+  <form action="" method="POST" id="main_form">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" maxlength="100" required>
+        <div class="invalid-feedback">Please provide your first name.</div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" maxlength="100" required>
+        <div class="invalid-feedback">Please provide your last name.</div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Pronoun">Last Name</label>
+        <input type="text" class="form-control" name="pronoun" id="pronoun" placeholder="Pronoun" maxlength="100" required>
+        <div class="invalid-feedback">Please provide a third person pronoun e.g. she/her, he/him, they/them.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" id="email" placeholder="Email" maxlength="100" required>
+        <div class="invalid-feedback">
+          Invalid email or already registered.
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="affili">Affiliation</label>
+      <input type="text" class="form-control" name="affiliation" id="affili" placeholder="Affiliation" maxlength="100" required>
+      <div class="invalid-feedback">Please provide your affiliation.</div>
+    </div>
+    <div class="form-group">
+      <label for="inter">Main Scientific Interests</label>
+      <input type="text" class="form-control" name="interests" id="inter" placeholder="Interests" maxlength="100" required>
+      <div class="invalid-feedback">Please provide your main scientific interests within DES.</div>
+    </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="visa" name="visa">
+        <label class="form-check-label" for="visa">
+        Check if you require an invitation letter for visa applications.
+         </label>
+       </div>
+      </div>
+
+    <hr>
+    <h5>Logistics</h5>
+    <div class="form-group">
+      <label for="inputAttendance">Which days do you plan to attend?</label>
+      <div id="Attendance">
+      <div class="form-check form-check-inline" id="inputAttendance">
+        <input class="form-check-input" type="checkbox" name="attend_mon" id="attend_mon">
+        <label class="form-check-label" for="attend_mon">Monday</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="attend_tue" id="attend_tue">
+        <label class="form-check-label" for="attend_tue">Tuesday</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox"  name="attend_wed" id="attend_wed">
+        <label class="form-check-label" for="attend_wed">Wednesday</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox"  name="attend_thu" id="attend_thu">
+        <label class="form-check-label" for="attend_thu">Thursday</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="attend_fri" id="attend_fri">
+        <label class="form-check-label" for="attend_fri">Friday</label>
+      </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="code_of_conduct" id="code_of_conduct" required>
+        <label class="form-check-label" for="code_of_conduct">
+        I have read, and will abide by, the DESC <a href="http://lsstdesc.org/sites/default/files/LSST_DESC_Professional_Conduct.pdf" target="_blank">Code of Conduct</a>.
+      </label>
+          <div class="invalid-feedback">You must agree to the code of conduct before registering.</div>
+      </div>
+    </div>
+    <input type="hidden" name="secret" id="secret" value=""/>
+  </form>
+</div>
+
+<!-- Modal Warning-->
+  <div class="modal fade" id="backendModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Invalid registration URL</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>The URL for this form does not contain a valid registration link.
+            Please contact the LOC for a valid registration URL.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registration successful</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="confirmation-content">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
