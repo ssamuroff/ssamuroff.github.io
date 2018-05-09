@@ -126,7 +126,7 @@ body {
     </div>
     <div class="form-group">
       <label for="inter">Main Scientific Interests</label>
-      <input type="text" class="form-control" name="interests" id="inter" placeholder="Interests" maxlength="100" required>
+      <input type="text" class="form-control" name="interests" id="inter" placeholder="e.g. Weak Lensing; LSS; supernovae" maxlength="100" required>
       <div class="invalid-feedback">Please provide your main scientific interests within DES.</div>
     </div>
 
@@ -228,11 +228,109 @@ body {
   </div>
 </div>
 
-
-
-</dl>
-  </div>
-</footer>
+  <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js'></script>
+  <script>
+// Eventbrite widget support
+var checkoutCallback = function() {
+  // Manually submit form data using Ajax and display confirmation modal
+  $.ajax({
+        type : 'POST',
+        data: $("#main_form").serialize(),
+        url : $("#main_form").attr('action'),
+        success : function(data){
+            $("#confirmation-content").html(data);
+            $("#confirmationModal").modal("show");
+        }
+    });
+};
+window.EBWidgets.createWidget({
+    widgetType: 'checkout',
+    eventId: '45044537424',
+    modal: true,
+    modalTriggerElementId: 'eventbrite-widget-modal-trigger-45044537424',
+    onOrderComplete: checkoutCallback
+});
+// Validate the form before authorising checkout
+$(function(){
+  document.getElementById("register_button").addEventListener("click", function(event) {
+    var form = document.getElementById("main_form");
+    // Custom checks
+    // Check that at least one day is selected
+    if($("#Attendance :input").filter(':checked').length >= 1){
+      $.each($("#Attendance :input"), function(index, obj){
+        obj.setCustomValidity("");
+      });
+    }else{
+      $.each($("#Attendance :input"), function(index, obj){
+        obj.setCustomValidity("Select at least one day");
+      });
+    }
+    // If form is not validated, don't trigger the registration
+    if(form.checkValidity() === false){
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    form.classList.add('was-validated');
+}, true);
+});
+// Function to disable the form if the backend is unavailable
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+var backend = getUrlParameter('backend');
+var secret  = getUrlParameter('secret');
+$(function(){
+  // Disable the form if the required info about backend server is missing
+   if((backend === undefined) || (secret === undefined)){
+     $("#main_form :input").prop('disabled', true);
+     $('#backendModal').modal({show: true});
+   }
+   $("#main_form").attr('action', backend+'/register');
+   $("#secret").attr('value', secret);
+});
+$("#email").change(function(){
+    $.post(backend+"/check_email",
+            {email: $(this).val(),
+             secret: secret},
+            function(data, status){
+              var d = document.getElementById("email");
+              if (status === "success"){
+                if(data === "Ok"){
+                  d.setCustomValidity("");
+                  d.classList.remove('is-invalid');
+                }else{
+                  d.setCustomValidity("Already registered.");
+                  d.classList.add('is-invalid');
+                }
+              }else{
+                  // Server is unavailable...
+                  // make sure we don't block the form at this stage
+                  d.setCustomValidity("");
+                  d.classList.remove('is-invalid');
+                }
+              console.log("Data: " + data + "\nStatus: " + status);
+            });
+});
+$("input").keyup(function() {
+  var target = $("#" + $(this).attr("id") + "-s");
+  target.text($(this).val());
+  target.css("font-size", "100%");
+  var badge = $("#badge");
+  var scale = badge.width() / target.width();
+  if (scale < 1) target.css("font-size", (scale * 100).toString() + "%");
+});
+</script>
 
 </body>
 
